@@ -1,9 +1,13 @@
+var currentDay = moment();
+var container = $('.container');
+
+$('#currentDay').text(currentDay.format("MMMM Do YYYY"));
+
 // for (var i = 0; i < array.length; i++) {
 //     const element = array[i];
     
 // }
 
-var container = $('.container');
 
 
 
