@@ -23,10 +23,10 @@ function renderTimeBlock() {
         }
 
         $('.container').append(`
-        <div class="row justify-content-md-center">
-            <div class="col-1 hour">${hour}</div>
-            <textarea id="hour-${i}" class="col-10 ${timeColor}"></textarea>
-            <div class="col-1 saveBtn">Save</div>
+        <div class="row justify-content-center">
+            <div class="col-1 d-flex align-items-center justify-content-center hour">${hour}</div>
+            <textarea id="hour-${i}" class="col-10 textarea ${timeColor}"></textarea>
+            <div class="col-1 d-flex align-items-center justify-content-center saveBtn"><i class="fa fa-save"></i></div>
         </div>
         `
         )
@@ -35,7 +35,39 @@ function renderTimeBlock() {
 
 function pageInit() {
     renderTimeBlock();
+    if ((JSON.parse(localStorage.getItem('scheduled'))) !== null) {
+        var schedLoad = JSON.parse(localStorage.getItem('scheduled'));
 
+        for (i = 0; i < schedLoad.length; i++) {
+            $('#'+schedLoad[i].schedHour).val(schedLoad[i].schedText);
+        }
+    } else { }
 }
 
 pageInit();
+
+$('.saveBtn').on('click', (event) => {
+    var scheduled = [];
+
+    if ((JSON.parse(localStorage.getItem('scheduled'))) !== null) {
+        scheduled = JSON.parse(localStorage.getItem('scheduled'));
+    } else { }
+
+    if (scheduled.length !== 0) {
+        if (scheduled.find(sched => sched.schedHour === event.currentTarget.previousElementSibling.id) !== undefined) {
+            scheduled.find(sched => sched.schedHour === event.currentTarget.previousElementSibling.id).schedText = ($('#' + event.currentTarget.previousElementSibling.id).val());
+        } else if (scheduled.find(sched => sched.schedHour === event.currentTarget.previousElementSibling.id) === undefined) {
+            scheduled.push({
+                schedHour: (event.currentTarget.previousElementSibling.id),
+                schedText: ($('#'+event.currentTarget.previousElementSibling.id).val())
+            });
+        }
+    } else {
+        scheduled.push({
+            schedHour: (event.currentTarget.previousElementSibling.id),
+            schedText: ($('#'+event.currentTarget.previousElementSibling.id).val())
+        });
+    }
+
+    localStorage.setItem('scheduled', JSON.stringify(scheduled));
+});
