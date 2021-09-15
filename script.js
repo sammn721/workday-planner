@@ -1,26 +1,28 @@
-var currentDay = moment();
-var container = $('.container');
+var currentTime = moment();
+// var container = $('.container');
 
-$('#currentDay').text(currentDay.format("MMMM Do YYYY"));
+// Render formatted date
+$('#currentDay').text(currentTime.format("dddd, MMMM Do"));
 
-// for (var i = 0; i < array.length; i++) {
-//     const element = array[i];
-    
-// }
+function renderTimeBlock() {
+    for (var i = 9; i <= 17; i++) {
+        var hour;
+        if (i < 12) {
+            hour = (i + 'AM')
+        } else if (i > 12) {
+            hour = ((i - 12) + 'PM')
+        } else {
+            hour = '12PM'
+        }
+        $('.container').append(`
+        <div class="row justify-content-md-center">
+            <div class="col-1 hour">${hour}</div>
+            <textarea id="hour-${i}" class="col-10"></textarea>
+            <div class="col-1 saveBtn">Save</div>
+        </div>
+        `
+        )
+    }
+}
 
-
-
-
-
-container.append(`
-<form class="row row-cols-lg-auto g-3 align-items-center">
-  <div class="col-12">
-    <div class="input-group">
-      <div class="input-group-text">Time</div>
-      <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
-      <input class="btn btn-primary" type="button" value="Input">
-    </div>
-  </div>
-
-</form>
-`);
+renderTimeBlock();
