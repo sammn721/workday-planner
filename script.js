@@ -4,7 +4,7 @@ var timeColor;
 $('#currentDay').text(currentTime.format("dddd, MMMM Do"));
 
 function renderTimeBlock() {
-    for (var i = 8; i <= 18; i++) {
+    for (var i = 9; i <= 17; i++) {
         var hour;
         if (i < 12) {
             hour = (i + 'AM')
@@ -25,7 +25,7 @@ function renderTimeBlock() {
         $('.container').append(`
         <div class="row justify-content-center">
             <div class="col-1 d-flex align-items-center justify-content-center hour">${hour}</div>
-            <textarea id="hour-${i}" class="col-10 textarea ${timeColor}"></textarea>
+            <textarea id="hour-${i}" class="col-10 ${timeColor}"></textarea>
             <div class="col-1 d-flex align-items-center justify-content-center saveBtn"><i class="fa fa-save"></i></div>
         </div>
         `
