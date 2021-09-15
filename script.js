@@ -4,7 +4,7 @@ var timeColor;
 $('#currentDay').text(currentTime.format("dddd, MMMM Do"));
 
 function renderTimeBlock() {
-    for (var i = 9; i <= 23; i++) {
+    for (var i = 8; i <= 18; i++) {
         var hour;
         if (i < 12) {
             hour = (i + 'AM')
