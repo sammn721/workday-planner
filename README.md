@@ -13,4 +13,5 @@ The goal of this project was to create a dynamic workday planner.
 - When the day begins, most of the day will be green and the current hour will be red.
 - As the day progresses, past hours will turn grey while the current hour will always change to red.
 
-
+https://sammn721.github.io/workday-planner/
+![alt text](images/work-day-scheduler.png)
